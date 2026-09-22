@@ -31,13 +31,8 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public boolean deleteUserById(int userId) {
+    public boolean deleteUser(int userId) {
         return false;
-    }
-
-    @Override
-    public User getUserByUsername(String username) {
-        return null;
     }
 
     @Override

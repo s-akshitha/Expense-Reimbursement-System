@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements IEmployeeService{
     }
 
     @Override
-    public boolean deleteEmployeeById(int employeeId) {
+    public boolean deleteEmployee(int employeeId) {
         return false;
     }
 }

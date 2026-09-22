@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class ClaimItem {
     private int itemId;
-    private int claimId;
-    private int categoryId;
+    private ExpenseClaim expenseClaim;
+    private ExpenseCategory expenseCategory;
     private String description;
     private double amount;
     private LocalDate expenseDate;
 
-    public ClaimItem(int claimId, int categoryId, String description, double amount, LocalDate expenseDate) {
-        this.claimId = claimId;
-        this.categoryId = categoryId;
+    public ClaimItem(ExpenseClaim expenseClaim, ExpenseCategory expenseCategory, String description, double amount, LocalDate expenseDate) {
+        this.expenseClaim= expenseClaim;
+        this.expenseCategory=expenseCategory;
         this.description = description;
         this.amount = amount;
         this.expenseDate = expenseDate;
@@ -26,20 +26,20 @@ public class ClaimItem {
         this.itemId = itemId;
     }
 
-    public int getClaimId() {
-        return claimId;
+    public ExpenseClaim getExpenseClaim() {
+        return expenseClaim;
     }
 
-    public void setClaimId(int claimId) {
-        this.claimId = claimId;
+    public void setExpenseClaim(ExpenseClaim expenseClaim) {
+        this.expenseClaim=expenseClaim;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public ExpenseCategory getCategory() {
+        return expenseCategory;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryId(ExpenseCategory expenseCategory) {
+        this.expenseCategory=expenseCategory;
     }
 
     public String getDescription() {
@@ -70,8 +70,8 @@ public class ClaimItem {
     public String toString() {
         return "ClaimItems{" +
                 "itemId=" + itemId +
-                ", claimId=" + claimId +
-                ", categoryId=" + categoryId +
+                ", claimId=" +  expenseClaim.getClaimId()+
+                ", categoryId=" + expenseCategory.getCategoryId() +
                 ", description='" + description + '\'' +
                 ", amount=" + amount +
                 ", expenseDate=" + expenseDate +

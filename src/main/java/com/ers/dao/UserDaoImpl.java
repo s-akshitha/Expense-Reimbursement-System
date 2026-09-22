@@ -23,12 +23,8 @@ public class UserDaoImpl implements IUserDao{
         return List.of();
     }
     @Override
-    public boolean deleteUserById(int userId) {
+    public boolean deleteUser(int userId) {
         return false;
-    }
-    @Override
-    public User getUserByUsername(String username) {
-        return null;
     }
 
     @Override

@@ -3,16 +3,20 @@ package com.ers.model;
 public class Employee {
 
     private int employeeId;
-    private int userId;
+    private User user;
     private String fullName;
     private String email;
-    private int departmentId;
+    private Department department;
 
-    public Employee(int userId, String fullName, String email, int departmentId) {
-        this.userId = userId;
+    public Employee(){
+
+    }
+
+    public Employee(User user, String fullName, String email, Department department) {
+        this.user = user;
         this.fullName = fullName;
         this.email = email;
-        this.departmentId = departmentId;
+        this.department=department;
     }
 
     public int getEmployeeId() {
@@ -23,12 +27,12 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFullName() {
@@ -47,22 +51,22 @@ public class Employee {
         this.email = email;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
     public String toString() {
-        return "Employees{" +
+        return "Employee{" +
                 "employeeId=" + employeeId +
-                ", userId=" + userId +
+                ", userId=" + user.getUserId() +
                 ", fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
-                ", departmentId=" + departmentId +
+                ", department=" + department +
                 '}';
     }
 }

@@ -4,19 +4,25 @@ import java.time.LocalDate;
 
 public class ExpenseClaim {
     private int claimId;
-    private int employeeId;
+    private Employee employee;
     private String claimDesc;
     private double claimAmount;
     private LocalDate claimDate;
     private String status;
+    private String reason;
     private String documentPath;
 
-    public ExpenseClaim(int employeeId, String claimDesc, double claimAmount, LocalDate claimDate, String status, String documentPath) {
-        this.employeeId = employeeId;
+    public ExpenseClaim(){
+        this.employee = new Employee();
+    }
+
+    public ExpenseClaim(int employeeId, String claimDesc, double claimAmount, LocalDate claimDate, String status, String reason, String documentPath) {
+        this.employee.setEmployeeId(employeeId);
         this.claimDesc = claimDesc;
         this.claimAmount = claimAmount;
         this.claimDate = claimDate;
         this.status = status;
+        this.reason = reason;
         this.documentPath = documentPath;
     }
 
@@ -29,11 +35,11 @@ public class ExpenseClaim {
     }
 
     public int getEmployeeId() {
-        return employeeId;
+        return employee.getEmployeeId();
     }
 
     public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+        employee.setEmployeeId(employeeId);
     }
 
     public String getClaimDesc() {
@@ -68,6 +74,14 @@ public class ExpenseClaim {
         this.status = status;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     public String getDocumentPath() {
         return documentPath;
     }
@@ -78,13 +92,14 @@ public class ExpenseClaim {
 
     @Override
     public String toString() {
-        return "ExpenseClaims{" +
+        return "ExpenseClaim{" +
                 "claimId=" + claimId +
-                ", employeeId=" + employeeId +
+                ", employeeId=" + employee.getEmployeeId() +
                 ", claimDesc='" + claimDesc + '\'' +
                 ", claimAmount=" + claimAmount +
                 ", claimDate=" + claimDate +
                 ", status='" + status + '\'' +
+                ", reason='" + reason + '\'' +
                 ", documentPath='" + documentPath + '\'' +
                 '}';
     }

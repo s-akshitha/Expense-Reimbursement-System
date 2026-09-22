@@ -1,29 +1,29 @@
 package com.ers.model;
 
 public class ExpenseCategory {
-    private int category_id;
-    private String category_name;
+    private int categoryId;
+    private String categoryName;
     private String description;
 
-    public ExpenseCategory(String category_name, String description) {
-        this.category_name = category_name;
+    public ExpenseCategory(String categoryName, String description) {
+        this.categoryName = categoryName;
         this.description = description;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getDescription() {
@@ -36,9 +36,9 @@ public class ExpenseCategory {
 
     @Override
     public String toString() {
-        return "Expense_Categories{" +
-                "category_id=" + category_id +
-                ", category_name='" + category_name + '\'' +
+        return "ExpenseCategories{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

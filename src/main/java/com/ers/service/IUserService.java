@@ -9,7 +9,6 @@ public interface IUserService {
     boolean updateUser(User user);
     User getUserById(int userId);
     List<User> getAllUsers();
-    boolean deleteUserById(int userId);
-    User getUserByUsername(String username);
+    boolean deleteUser(int userId);
     boolean updateUserStatus(int userId, boolean active);
 }

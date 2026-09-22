@@ -24,7 +24,7 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return List.of();
     }
-    public boolean deleteEmployeeById(int employeeId) {
+    public boolean deleteEmployee(int employeeId) {
         return false;
     }
 }

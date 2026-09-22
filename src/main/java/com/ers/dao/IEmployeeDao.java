@@ -9,5 +9,5 @@ public interface IEmployeeDao {
     boolean updateEmployee(Employee employee);
     Employee getEmployeeById(int employeeId);
     List<Employee> getAllEmployees();
-    boolean deleteEmployeeById(int employeeId);
+    boolean deleteEmployee(int employeeId);
 }

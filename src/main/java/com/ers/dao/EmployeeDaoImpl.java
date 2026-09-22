@@ -3,7 +3,6 @@ package com.ers.dao;
 import com.ers.model.Employee;
 import com.ers.util.JDBCUtil;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class EmployeeDaoImpl implements IEmployeeDao {
@@ -33,7 +32,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
     }
 
     @Override
-    public boolean deleteEmployeeById(int employeeId) {
+    public boolean deleteEmployee(int employeeId) {
         return false;
     }
 }
