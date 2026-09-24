@@ -10,6 +10,7 @@ public class User {
     private boolean isActive;
     private LocalDateTime createdAt;
 
+    public User(){}
     public User(String userName, String password, String role, boolean isActive, LocalDateTime createdAt) {
         this.userName = userName;
         this.password = password;

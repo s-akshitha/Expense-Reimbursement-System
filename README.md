@@ -5,6 +5,14 @@
 This is the initial skeleton of the **Expense Reimbursement System** project.  
 The project is structured using a layered architecture to separate responsibilities and make the application easier to develop, maintain, and extend.
 
+## Technologies & Dependencies
+- **Java** – JDK 19
+- **Maven** – Project build and dependency management
+- **JDBC** – Database connectivity
+- **MySQL** – Database
+- **MySQL Connector/J** – 9.4.0
+- **JUnit Jupiter** – 5.13.4
+
 ## Project Structure
 
 The project contains the following packages:
@@ -76,11 +84,3 @@ The application follows the flow:
                           |
                           v
                       Database
-
-## Technologies & Dependencies
-- **Java** – JDK 19
-- **Maven** – Project build and dependency management
-- **JDBC** – Database connectivity
-- **MySQL** – Database
-- **MySQL Connector/J** – 9.4.0
-- **JUnit Jupiter** – 5.13.4
