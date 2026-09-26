@@ -1,6 +1,7 @@
 package com.ers.dao;
 
 import com.ers.exception.DaoException;
+import com.ers.model.Role;
 import com.ers.model.User;
 import com.ers.util.JDBCUtil;
 import org.slf4j.Logger;
@@ -17,29 +18,29 @@ public class UserDaoImpl implements IUserDao{
 
     private static final Logger logger=LoggerFactory.getLogger(UserDaoImpl.class);
 
-    private final String insertQuery="insert into users (username,password,role,is_active,created_at) values(?,?,?,?,?)";
+    private static final String insertQuery="insert into users (username,password,role,is_active,created_at) values(?,?,?,?,?)";
 
-    private final String updateQuery ="update users set password=? where user_id=?";
+    private static final String updateQuery ="update users set password=? where user_id=?";
 
-    private final String deleteQuery ="delete from users where user_id=?";
+    private static final String deleteQuery ="delete from users where user_id=?";
 
-    private final String selectByIdQuery ="select user_id,username,password,role,is_active,created_at from users where user_id=?";
+    private static final String selectByIdQuery ="select user_id,username,password,role,is_active,created_at from users where user_id=?";
 
-    private final String selectAllQuery ="select user_id,username,password,role,is_active,created_at from users";
+    private static final String selectAllQuery ="select user_id,username,password,role,is_active,created_at from users";
 
-    private final String updateStatusQuery="update users set is_active=? where user_id=?";
+    private static final String updateStatusQuery="update users set is_active=? where user_id=?";
 
     public UserDaoImpl(){
         this.jdbcUtil = new JDBCUtil();
     }
 
     @Override
-    public User addUser(User user) {
+    public User addUser(Connection con,User user) {
         logger.info("Started UserDaoImpl.addUser()");
-        try(Connection con = jdbcUtil.getConnection();PreparedStatement ps = con.prepareStatement(insertQuery,Statement.RETURN_GENERATED_KEYS)){
+        try(PreparedStatement ps = con.prepareStatement(insertQuery,Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1,user.getUserName());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getRole());
+            ps.setString(3, user.getRole().name());
             ps.setBoolean(4,user.isActive());
             ps.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
             int rows = ps.executeUpdate();
@@ -82,7 +83,7 @@ public class UserDaoImpl implements IUserDao{
                     user.setUserId(rs.getInt("user_id"));
                     user.setUserName(rs.getString("username"));
                     user.setPassword(rs.getString("password"));
-                    user.setRole(rs.getString("role"));
+                    user.setRole(Role.valueOf(rs.getString("role")));
                     user.setActive(rs.getBoolean("is_active"));
                     logger.info("End UserDaoImpl.getUserById()");
                     return user;
@@ -105,7 +106,7 @@ public class UserDaoImpl implements IUserDao{
                 user.setUserId(rs.getInt("user_id"));
                 user.setUserName(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
-                user.setRole(rs.getString("role"));
+                user.setRole(Role.valueOf(rs.getString("role")));
                 user.setActive(rs.getBoolean("is_active"));
                 users.add(user);
             }
@@ -117,9 +118,9 @@ public class UserDaoImpl implements IUserDao{
         }
     }
     @Override
-    public boolean deleteUser(int userId) {
+    public boolean deleteUser(Connection connection,int userId) {
         logger.info("Started UserDaoImpl.deleteUser()");
-        try(Connection connection = jdbcUtil.getConnection();PreparedStatement ps=connection.prepareStatement(deleteQuery)){
+        try(PreparedStatement ps=connection.prepareStatement(deleteQuery)){
             ps.setInt(1,userId);
             boolean result=ps.executeUpdate()>0;
             logger.info("Ending UserDaoImpl.deleteUser()");

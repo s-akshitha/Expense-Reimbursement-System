@@ -10,6 +10,10 @@ public class Department {
         this.managerId = managerId;
     }
 
+    public Department() {
+
+    }
+
     public int getDepartmentId() {
         return departmentId;
     }
