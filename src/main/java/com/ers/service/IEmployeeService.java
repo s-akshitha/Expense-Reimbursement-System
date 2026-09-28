@@ -13,5 +13,7 @@ public interface IEmployeeService {
     boolean updateEmployee(Employee employee);
     Employee getEmployeeById(int employeeId);
     List<Employee> getAllEmployees();
-    boolean deleteEmployee(int employeeId) throws ServiceException, com.ers.exception.ServiceException;
+    boolean deleteEmployee(int employeeId) throws ServiceException;
+    Employee getEmployeeByUserId(int userId);
+
 }

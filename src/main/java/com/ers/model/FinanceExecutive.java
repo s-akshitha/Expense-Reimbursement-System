@@ -1,24 +1,28 @@
 package com.ers.model;
 
 public class FinanceExecutive {
-    private int employeeId;
+    private Employee employee;
     private String fullName;
     private String email;
     private String department;
 
-    public FinanceExecutive(int employeeId, String fullName, String email, String department) {
-        this.employeeId = employeeId;
+    public FinanceExecutive(Employee employee, String fullName, String email, String department) {
+        this.employee = employee;
         this.fullName = fullName;
         this.email = email;
         this.department = department;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public FinanceExecutive() {
+
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getFullName() {
@@ -48,7 +52,7 @@ public class FinanceExecutive {
     @Override
     public String toString() {
         return "FinanceExecutives{" +
-                "employeeId=" + employeeId +
+                "employeeId=" + employee.getEmployeeId() +
                 ", fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
                 ", department='" + department + '\'' +

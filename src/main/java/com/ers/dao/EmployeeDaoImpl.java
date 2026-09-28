@@ -1,12 +1,12 @@
 package com.ers.dao;
 
+import ch.qos.logback.classic.Logger;
 import com.ers.exception.DaoException;
 import com.ers.model.Department;
 import com.ers.model.Employee;
 import com.ers.model.Role;
 import com.ers.model.User;
 import com.ers.util.JDBCUtil;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ers.exception.ServiceException;
 
@@ -17,17 +17,19 @@ import java.util.List;
 public class EmployeeDaoImpl implements IEmployeeDao {
     JDBCUtil jdbcUtil;
 
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeDaoImpl.class);
+    private static final Logger logger =(Logger)LoggerFactory.getLogger(EmployeeDaoImpl.class);
     public EmployeeDaoImpl()
     {
         this.jdbcUtil=new JDBCUtil();
 
     }
-    private static final String insertQuery ="insert into employees(user_id,full_name,email,department_id) values(?,?,?,?)";
-    private static final String selectByIdQuery ="select e.employee_id,e.user_id,e.full_name,e.email,e.department_id,u.username,u.password,u.role,u.is_active from employees e join users u on e.user_id=u.user_id where e.employee_id=?";
-    private static final String selectAllQuery ="select employee_id,user_id,full_name,email,department_id from employees";
-    private static final String updateQuery= "update employees set email=?,department_id=? where employee_id=?";
-    private static final String deleteQuery= "delete from employees where employee_id=?";
+    private static final String insertQuery = "insert into employees(user_id,full_name,email,department_id) values(?,?,?,?)";
+    private static final String selectByIdQuery = "select e.employee_id,e.user_id,e.full_name,e.email,e.department_id,u.username,u.password,u.role,u.is_active from employees e join users u on e.user_id=u.user_id where e.employee_id=?";
+    private static final String selectByUserIdQuery = "select e.employee_id,e.user_id,e.full_name,e.email,e.department_id,u.username,u.password,u.role,u.is_active from employees e join users u on e.user_id=u.user_id where e.user_id=?";
+    private static final String selectAllQuery = "select e.employee_id,e.user_id,e.full_name,e.email,e.department_id,u.username,u.password,u.role,u.is_active from employees e join users u on e.user_id=u.user_id";
+    private static final String updateQuery = "update employees set email=?,department_id=? where employee_id=?";
+    private static final String deleteQuery = "delete from employees where employee_id=?";
+
     //Crud operation will be done here
     @Override
     public Employee addEmployee(Connection connection,Employee employee) {
@@ -136,7 +138,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
     }
     public Employee getEmployeeById(Connection connection,int employeeId){
         logger.info("Started EmployeeDaoImpl.getEmployeeById()");
-        try (PreparedStatement ps=connection.prepareStatement(selectByIdQuery)){
+        try(PreparedStatement ps=connection.prepareStatement(selectByIdQuery)){
             ps.setInt(1, employeeId);
             try(ResultSet rs =ps.executeQuery()){
                 if(rs.next()){
@@ -149,6 +151,22 @@ public class EmployeeDaoImpl implements IEmployeeDao {
         }catch(SQLException e){
             logger.error("ERROR at EmployeeDaoImpl.getEmployeeById()",e);
             throw new DaoException("Unable to retrieve employee",e);
+        }
+    }
+
+    @Override
+    public Employee getEmployeeByUserId(int userId) {
+        logger.info("Started EmployeeDaoImpl.getEmployeeByUserId()");
+        try(Connection con=jdbcUtil.getConnection();PreparedStatement ps =con.prepareStatement(selectByUserIdQuery)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                Employee employee = rs.next() ? mapEmployee(rs) : null;
+                logger.info("Ending EmployeeDaoImpl.getEmployeeByUserId()");
+                return employee;
+            }
+        }catch(SQLException e){
+            logger.error("ERROR at EmployeeDaoImpl.getEmployeeByUserId()", e);
+            throw new DaoException("Unable to retrieve employee for user", e);
         }
     }
 }

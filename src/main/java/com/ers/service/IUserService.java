@@ -12,4 +12,5 @@ public interface IUserService {
     List<User> getAllUsers();
     boolean deleteUser(Connection connection,int userId);
     boolean updateUserStatus(int userId, boolean active);
+    User authenticate(String username, String password);
 }

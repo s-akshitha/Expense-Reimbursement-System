@@ -1,22 +1,20 @@
 package com.ers.dao;
 
+import com.ers.model.Employee;
 import com.ers.model.ExpenseClaim;
 import com.ers.model.FinanceExecutive;
 import com.ers.model.Reimbursement;
 
+import java.sql.Connection;
 import java.util.List;
 
 public interface IFinanceExecutiveDao {
     //CRUD Operations
-    FinanceExecutive addFinanceExecutive(FinanceExecutive financeExecutive);
+    FinanceExecutive addFinanceExecutive(Connection connection,FinanceExecutive financeExecutive);
     boolean updateFinanceExecutive(FinanceExecutive financeExecutive);
-    FinanceExecutive getFinanceExecutiveById(int employeeId);
+    FinanceExecutive getFinanceExecutiveById(Employee employee);
     List<FinanceExecutive> getAllFinanceExecutives();
-    boolean deleteFinanceExecutiveById(int employeeId);
-    //Expense Claim operations
-    List<ExpenseClaim> getPendingClaims();
-    ExpenseClaim getClaimById(int claimId);
-    //Reimbursement operations
-    boolean processPayment(int claimId, int financeExecutiveId, String paymentMode);
-    List<Reimbursement> getReimbursementHistory(int financeExecutiveId);
+    boolean deleteFinanceExecutiveById(Employee employee);
+    List<ExpenseClaim> getApprovedClaims(Connection connection);
+    ExpenseClaim getClaimById(Connection connection, int claimId);
 }

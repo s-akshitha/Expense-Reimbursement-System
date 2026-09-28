@@ -12,4 +12,5 @@ public interface IUserDao {
     List<User> getAllUsers();
     boolean deleteUser(Connection connection,int userId);
     boolean updateUserStatus(int userId, boolean active);
+    User getUserByUsername(String username);
 }

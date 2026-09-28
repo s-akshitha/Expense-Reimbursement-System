@@ -1,22 +1,20 @@
 package com.ers.service;
 
+import com.ers.model.Employee;
 import com.ers.model.ExpenseClaim;
 import com.ers.model.FinanceExecutive;
 import com.ers.model.Reimbursement;
 
+import java.sql.Connection;
 import java.util.List;
 
 public interface IFinanceExecutiveService {
     //CRUD Operations
     FinanceExecutive addFinanceExecutive(FinanceExecutive financeExecutive);
     boolean updateFinanceExecutive(FinanceExecutive financeExecutive);
-    FinanceExecutive getFinanceExecutiveById(int employeeId);
+    FinanceExecutive getFinanceExecutiveById(Employee employee);
     List<FinanceExecutive> getAllFinanceExecutives();
-    boolean deleteFinanceExecutiveById(int employeeId);
-    //Expense Claim operations
-    List<ExpenseClaim> getPendingClaims();
+    boolean deleteFinanceExecutiveById(Employee employee);
+    List<ExpenseClaim> getApprovedClaims();
     ExpenseClaim getClaimById(int claimId);
-    //Reimbursement operations
-    boolean processPayment(int claimId, int financeExecutiveId, String paymentMode);
-    List<Reimbursement> getReimbursementHistory(int financeExecutiveId);
 }

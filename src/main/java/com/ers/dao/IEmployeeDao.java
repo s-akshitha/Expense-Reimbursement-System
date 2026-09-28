@@ -14,4 +14,5 @@ public interface IEmployeeDao {
     List<Employee> getAllEmployees();
     boolean deleteEmployee(Connection connection,int employeeId) throws ServiceException;
     Employee getEmployeeById(Connection connection,int employeeId);
+    Employee getEmployeeByUserId(int userId);
 }
