@@ -13,11 +13,11 @@ public class ExpenseClaim {
     private String documentPath;
 
     public ExpenseClaim(){
-        this.employee = new Employee();
+
     }
 
-    public ExpenseClaim(int employeeId, String claimDesc, double claimAmount, LocalDate claimDate, String status, String reason, String documentPath) {
-        this.employee.setEmployeeId(employeeId);
+    public ExpenseClaim(Employee employee, String claimDesc, double claimAmount, LocalDate claimDate, String status, String documentPath,String reason) {
+        this.employee=employee;
         this.claimDesc = claimDesc;
         this.claimAmount = claimAmount;
         this.claimDate = claimDate;
@@ -34,12 +34,12 @@ public class ExpenseClaim {
         this.claimId = claimId;
     }
 
-    public int getEmployeeId() {
-        return employee.getEmployeeId();
+    public Employee getEmployee() {
+        return this.employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        employee.setEmployeeId(employeeId);
+    public void setEmployee(Employee employee) {
+        this.employee=employee;
     }
 
     public String getClaimDesc() {
@@ -100,7 +100,7 @@ public class ExpenseClaim {
                 ", claimDate=" + claimDate +
                 ", status='" + status + '\'' +
                 ", reason='" + reason + '\'' +
-                ", documentPath='" + documentPath + '\'' +
+                ", Document Path='"+ documentPath+'\''+
                 '}';
     }
 }

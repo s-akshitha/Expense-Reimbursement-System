@@ -10,6 +10,10 @@ public class ExpenseCategory {
         this.description = description;
     }
 
+    public ExpenseCategory() {
+
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
