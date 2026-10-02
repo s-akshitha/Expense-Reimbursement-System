@@ -18,6 +18,10 @@ public class ClaimItem {
         this.expenseDate = expenseDate;
     }
 
+    public ClaimItem() {
+
+    }
+
     public int getItemId() {
         return itemId;
     }
@@ -38,7 +42,7 @@ public class ClaimItem {
         return expenseCategory;
     }
 
-    public void setCategoryId(ExpenseCategory expenseCategory) {
+    public void setCategory(ExpenseCategory expenseCategory) {
         this.expenseCategory=expenseCategory;
     }
 

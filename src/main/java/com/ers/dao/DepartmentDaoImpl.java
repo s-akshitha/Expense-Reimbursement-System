@@ -2,10 +2,12 @@ package com.ers.dao;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
+import com.ers.controller.AppController;
 import com.ers.exception.DaoException;
 import com.ers.model.Department;
 import com.ers.model.Employee;
 import com.ers.util.JDBCUtil;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.*;
@@ -13,11 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentDaoImpl implements IDepartmentDao{
-    private static final Logger logger;
-    static {
-        LoggerContext context = new LoggerContext();
-        logger = context.getLogger(DepartmentDaoImpl.class.getName());
-    }
+    private static final Logger logger=(Logger) LoggerFactory.getLogger(DepartmentDaoImpl.class);
     private final JDBCUtil jdbcUtil;
     public DepartmentDaoImpl(){
         this.jdbcUtil = new JDBCUtil();

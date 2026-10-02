@@ -11,6 +11,5 @@ public interface IDepartmentService {
     Department getDepartmentById(int departmentId);
     List<Department> getAllDepartments();
     boolean deleteDepartmentById(int departmentId);
-    //List<Employee> getEmployeesByDepartmentId(int departmentId);
-   // Department getDepartmentByManagerId(int managerId);
+    boolean assignManager(int departmentId, int employeeId);
 }
