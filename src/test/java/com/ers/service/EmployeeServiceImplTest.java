@@ -2,6 +2,7 @@ package com.ers.service;
 
 import com.ers.dao.IDepartmentDao;
 import com.ers.dao.IEmployeeDao;
+import com.ers.dao.IFinanceExecutiveDao;
 import com.ers.dao.IUserDao;
 import com.ers.exception.ServiceException;
 import com.ers.model.Department;
@@ -25,6 +26,7 @@ class EmployeeServiceImplTest {
     private IUserDao userDao;
     private IDepartmentDao departmentDao;
     private JDBCUtil jdbcUtil;
+    private IFinanceExecutiveDao financeExecutiveDao;
     private Connection connection;
 
     private EmployeeServiceImpl employeeService;
@@ -34,9 +36,10 @@ class EmployeeServiceImplTest {
         employeeDao=mock(IEmployeeDao.class);
         userDao=mock(IUserDao.class);
         departmentDao=mock(IDepartmentDao.class);
+        financeExecutiveDao=mock(IFinanceExecutiveDao.class);
         jdbcUtil=mock(JDBCUtil.class);
         connection=mock(Connection.class);
-        employeeService = new EmployeeServiceImpl(employeeDao, jdbcUtil, userDao, departmentDao);
+        employeeService = new EmployeeServiceImpl(employeeDao, jdbcUtil, userDao, departmentDao,financeExecutiveDao);
     }
 
     @AfterEach
